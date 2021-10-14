@@ -3,6 +3,7 @@ import {
     SearchIcon,
     GlobeAltIcon,
     MenuIcon,
+    UsersIcon,
     UserCircleIcon
 } from '@heroicons/react/solid';
 import { useState } from 'react';
@@ -15,16 +16,21 @@ const Header = () => {
     const [searchInput, setSearchInput] = useState('');
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
+    const [numberOfguests, setNumberOfGuests] = useState(1);
 
     const selectionRange = {
         startDate,
         endDate,
         key: 'selection'
     }
-
+ 
     const handleSelect = (ranges) => {
         setStartDate(ranges.selection.startDate);
         setEndDate(ranges.selection.endDate);
+    }
+
+    const resetInput = () => {
+        setSearchInput('');
     }
 
     return (
@@ -73,6 +79,24 @@ const Header = () => {
                             rangeColors={['#FD5B61']}
                             onChange={handleSelect}
                         />
+
+                        <div className='flex items-center border-b mb-4'>
+                            <h2 className='text-2xl flex-grow font-semibold'>Number of Guests
+                            </h2>
+
+                            <UsersIcon className='h-5'/>
+                            <input 
+                                value={numberOfguests}
+                                onChange={(e) => setNumberOfGuests(e.target.value)}
+                                min={1}
+                                type="number"
+                                className='w-12 pl-2 text-lg outline-none text-red-400 font-semibold' />
+                        </div>
+
+                        <div className='flex'>
+                            <button className='flex-grow text-gray-500' onClick={resetInput}>Cancel</button>
+                            <button className='flex-grow text-red-400'>Search</button>
+                        </div>
                     </div>
                 )
             }
