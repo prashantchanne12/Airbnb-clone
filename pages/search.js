@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { format } from 'date-fns';
 import InfoCard from "../components/InfoCard";
+import Maps from "../components/Maps";
 
 const Search = ({ searchResults }) => {
 
@@ -12,6 +13,7 @@ const Search = ({ searchResults }) => {
     const formatedStartDate = format(new Date(startDate), 'dd MMMM yy');
     const formatedEndDate = format(new Date(endDate), 'dd MMMM yy');
     const range = `${formatedStartDate} - ${formatedEndDate}`;
+
 
     return (
         <div>
@@ -46,6 +48,10 @@ const Search = ({ searchResults }) => {
                         }
                     </div>
 
+                </section>
+
+                <section className='hidden lg:inline-flex lg:min-w-[600px]'>
+                    <Maps searchResults={searchResults} />
                 </section>
             </main>
 
